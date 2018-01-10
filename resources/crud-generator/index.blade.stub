@@ -1,0 +1,42 @@
+@extends('%%extendsLayout%%')
+
+@section('%%sectionName%%')
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">{!! trans('%%crudName%%.heading_index') !!}</div>
+            <div class="panel-body">
+                <p><a href="{{ url('%%routeGroup%%%%crudName%%/create') }}" class="btn btn-primary">{!! trans('%%crudName%%.button_gocreate') !!}</a></p>
+
+                @include('flash::message')
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+%%formHeadingHtml%%
+                                <th>{!! trans('%%crudName%%.tableheading_actions') !!}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($%%crudName%% as $item)
+                            <tr>
+%%formBodyHtml%%
+                                <td>
+                                    <a href="{{ url('%%routeGroup%%%%crudName%%/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs">{!! trans('%%crudName%%.button_goedit') !!}</a>
+                                    &nbsp;
+                                    <a href="{{ url('%%routeGroup%%%%crudName%%/' . $item->id . '/predelete') }}" class="btn btn-danger btn-xs">{!! trans('%%crudName%%.button_godelete') !!}</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <div class="pagination"> {!! $%%crudName%%->render() !!} </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection

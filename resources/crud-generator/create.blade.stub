@@ -1,0 +1,36 @@
+@extends('%%extendsLayout%%')
+
+@section('%%sectionName%%')
+{!! Form::open(['url' => '%%routeGroup%%%%crudName%%', 'class' => 'form-horizontal']) !!}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">{!! trans('%%crudName%%.heading_create') !!}</div>
+                <div class="panel-body">
+    
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            {!! implode('<br>', $errors->all()) !!}
+                        </div>
+                    @endif
+
+%%formFieldsHtml%%
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-6">
+                            <a href="{{ url('%%routeGroup%%%%crudName%%') }}" class="btn btn-default">{!! trans('%%crudName%%.button_cancel') !!}</a>
+                            &nbsp;
+                            {!! Form::submit(trans('%%crudName%%.button_create'), ['class' => 'btn btn-primary']) !!}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{!! Form::close() !!}
+@endsection
